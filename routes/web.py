@@ -1,7 +1,9 @@
+from masonite.authentication import Auth
 from masonite.routes import Route
 from app.controllers.auth.LoginController import LoginController
 from app.controllers.auth.RegisterController import RegisterController
 from app.controllers.auth.PasswordResetController import PasswordResetController
+from app.controllers.auth.HomeController import HomeController
 
 
 ROUTES = [
@@ -12,4 +14,7 @@ ROUTES = [
     Route.post("/register", RegisterController.store).name("register.store"),
     Route.get("/forgotpassword", PasswordResetController.show).name("login.forgot_password"),
     Route.post("/passwordreset", PasswordResetController.show).name("password_reset.store"),
+    Route.get("/home", HomeController.show).name("auth.home"),
 ]
+
+ROUTES += Auth.routes()
